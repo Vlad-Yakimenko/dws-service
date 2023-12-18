@@ -17,7 +17,8 @@ public class AccountsRepositoryInMemory implements AccountsRepository {
         Account previousAccount = accounts.putIfAbsent(account.getAccountId(), account);
         if (previousAccount != null) {
             throw new DuplicateAccountIdException(
-                    "Account id " + account.getAccountId() + " already exists!");
+                    // string format much more readable than concatenation
+                    String.format("Account id %s already exists!", account.getAccountId()));
         }
     }
 
